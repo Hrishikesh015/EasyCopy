@@ -10,6 +10,6 @@ pip install -r requirements.txt
 ```
 Run the progream
 ```
-python script.py
+python script.py (filename)
 ```
 Enjoy
