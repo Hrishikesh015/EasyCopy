@@ -13,7 +13,8 @@ from pyfiglet import figlet_format
 import keyboard
 from selenium.webdriver.chrome.options import Options
 
-
+def help():
+    print('Usage: python script.py [filename]\nGive filename if you want to load your titles from a file\nOr you can use cli to give your titles\nPlease exit the program to give filename\nPress Ctrl+c to exit')
 
 def banner():
     cprint(figlet_format('Easy Copy', font='sblood'),
@@ -86,24 +87,33 @@ def file_input():
             x = line[:-1]
             queries.append(x)
     return queries
+def exit_gracefully():
+    print('\nExiting...')
+    exit(0)
 
 def init():
     os.system('cls')
     banner()
-    if len(sys.argv) > 1:
-        file_input()
-        queries = file_input()
-        for query in queries:
+    help()
+    try:
+        if len(sys.argv) > 1:
+            file_input()
+            queries = file_input()
+            for query in queries:
+                links = scrape_google(query)
+                file_output(query,links) # comment this if you need only browser output
+                browser_output(links) # comment this if u need only file output
+                input("Press Enter twice to continue....")
+                keyboard.wait('enter')
+    except KeyboardInterrupt:
+        exit_gracefully()
+    else:
+        try:
+            query = input_stdin()
             links = scrape_google(query)
             file_output(query,links) # comment this if you need only browser output
             browser_output(links) # comment this if u need only file output
-            input("Press Enter twice to continue....")
-            keyboard.wait('enter')
-    else:
-        query = input_stdin()
-        links = scrape_google(query)
-        file_output(query,links) # comment this if you need only browser output
-        browser_output(links) # comment this if u need only file output
-
+        except KeyboardInterrupt:
+            exit_gracefully()
 if __name__ == '__main__':
     init()
