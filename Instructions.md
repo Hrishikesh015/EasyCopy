@@ -1,5 +1,6 @@
 # Installation instructions
 First clone the project or download the zip file
+
 To clone:
 ```
   git clone https://github.com/Hrishikesh015/EasyCopy.git
