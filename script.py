@@ -64,7 +64,7 @@ def scrape_google(query):
 def browser_output(links):
     chrome_options = Options()
     chrome_options.add_experimental_option("detach", True)
-    browser = webdriver.Chrome(executable_path=r'C:\chromedriver.exe', options=chrome_options)
+    browser = webdriver.Chrome(executable_path=r'./chromedriver.exe', options=chrome_options)
     for posts in range(len(links)):
         if 'https://github.com' in links[posts]:
             browser.get(links[posts])    
