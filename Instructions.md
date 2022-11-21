@@ -9,12 +9,12 @@ Next install all the requirements
 ```
 pip install -r requirements.txt
 ```
-Install chromedriver for browser support
-```
-In line 66 of script.py replace the executable path with the path where you installed chromedriver
-```
 Run the progream
 ```
 python script.py (filename)
+```
+or 
+```
+python3 script.py (filename)
 ```
 Enjoy
