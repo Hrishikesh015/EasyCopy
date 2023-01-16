@@ -1,0 +1,13 @@
+1. argeparse 
+    -gg : github
+    -st : stackoverflow
+    -b : browser support
+    -d : debug
+    -f : file input
+    -o : file output
+
+2. Modularize libraries and imports
+
+3. Debugging
+
+4. add browser arguement in stack_browser_output (errorlog.py)
