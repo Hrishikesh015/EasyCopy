@@ -1,6 +1,6 @@
 import subprocess
-from output import stack_browser_output
-from g_scraper import scrape_google
+from actions.output import stack_browser_output
+from actions.g_scraper import scrape_google
 
 def get_error_log(command):
     try:
@@ -13,4 +13,3 @@ def debug_support():
     cmd = input("Enter command here: ")
     error_log = get_error_log(cmd)
     stack_browser_output(scrape_google(error_log)) 
-    # TODO add browser arguement in stack_browser_output
